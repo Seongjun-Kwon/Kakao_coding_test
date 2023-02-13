@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 class Solution {
+
     class Reservation implements Comparable<Reservation> {
         int startMin;
         int endMin;
@@ -35,17 +36,17 @@ class Solution {
         Arrays.sort(reservation);
 
         for (int i = 0; i < reservation.length; i++) {
-            boolean addRoom = false;
+            boolean addRoom = true;
 
             for (int j = 0; j < room.size(); j++) {
                 if (room.get(j) <= reservation[i].startMin) {
                     room.set(j, reservation[i].endMin);
-                    addRoom = true;
+                    addRoom = false;
                     break;
                 }
             }
 
-            if (!addRoom) {
+            if (addRoom) {
                 room.add(reservation[i].endMin);
             }
         }
